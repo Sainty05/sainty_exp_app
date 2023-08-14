@@ -9,7 +9,7 @@ import 'primeicons/primeicons.css';
 import Login from './component/Login';
 import { useGlobalContext } from './utils/context';
 import { Toast } from 'primereact/toast';
-import Movies from './component/Movies';
+import MyProfile from './component/MyProfile';
 import DailyExpences from './component/DailyExpences/DailyExpences';
 
 
@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/users" element={<Users />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/dailyExpences" element={<DailyExpences />} />
       </Routes>
       {/* <Outlet /> */}

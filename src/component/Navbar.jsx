@@ -13,7 +13,7 @@ import { Dialog, Popover } from '@headlessui/react'
 
 export default function Navbar() {
     const navigate = useNavigate()
-    const { sessionActive, setSessionActive, toast, setUserId } = useGlobalContext()
+    const { sessionActive, setSessionActive, toast, setUserId, userId } = useGlobalContext()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     useEffect(() => {
@@ -35,11 +35,11 @@ export default function Navbar() {
     const handleLogout = () => {
         let sessionId = JSON.parse(localStorage.getItem("session")).sessionId
         axiosBaseURL.post('/logout', { sessionId: sessionId }).then((res) => {
-            // console.log(res.data.sessionActive)
             setSessionActive(res.data.sessionActive)
+            localStorage.removeItem("session")
             navigate("/login")
         }).catch((err) => {
-            toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't loguot", life: 3000 });
+            toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't logout", life: 3000 });
         })
     }
 
@@ -69,17 +69,20 @@ export default function Navbar() {
                             <Link to="/" className="text-md font-semibold leading-6 text-gray-900">
                                 Home
                             </Link>
-                            <Link to="/users" className="text-md font-semibold leading-6 text-gray-900">
+                            {userId === 1 && <Link to="/users" className="text-md font-semibold leading-6 text-gray-900">
                                 Manage Users
-                            </Link>
-                            <Link to="/movies" className="text-md font-semibold leading-6 text-gray-900">
-                                Manage Movies
-                            </Link>
+                            </Link>}
                             <Link to="/dailyExpences" className="text-md font-semibold leading-6 text-gray-900">
                                 Daily Expences
                             </Link>
                         </Popover.Group>
-                        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
+                            <Link
+                                to="/myProfile"
+                                className="text-md font-semibold leading-6 text-gray-900"
+                            >
+                                My Profile
+                            </Link>
                             <button onClick={() => handleLogout()} className="text-md font-semibold leading-6 text-gray-900">
                                 Log Out <span aria-hidden="true">&rarr;</span>
                             </button>
@@ -115,18 +118,12 @@ export default function Navbar() {
                                         >
                                             Home
                                         </Link>
-                                        <Link
+                                        {userId === 1 && <Link
                                             to="/users"
                                             className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                         >
                                             Manage Users
-                                        </Link>
-                                        <Link
-                                            to="/movies"
-                                            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                        >
-                                            Manage Movies
-                                        </Link>
+                                        </Link>}
                                         <Link
                                             to="/dailyExpences"
                                             className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -135,9 +132,15 @@ export default function Navbar() {
                                         </Link>
                                     </div>
                                     <div className="py-6">
+                                        <Link
+                                            to="/myProfile"
+                                            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                        >
+                                            My Profile
+                                        </Link>
                                         <button
                                             onClick={() => handleLogout()}
-                                            className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                            className="-mx-3 w-full text-start block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                         >
                                             Log Out
                                         </button>

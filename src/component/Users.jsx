@@ -19,10 +19,14 @@ export default function Users() {
     // PrimeReact.changeTheme(currentTheme: string, newTheme: string, linkElementId: string, callback: Function)
     //action
     const actionTemplate = (rowData, options) => {
-        return (<>
-            <Button type="button" icon='pi pi-user-edit' onClick={() => updateUser(rowData._id)} className="p-button-sm p-button-text" />
-            <Button type="button" icon='pi pi-trash' onClick={() => confirmDelete(rowData._id)} severity="danger" className="p-button-sm p-button-text" />
-        </>)
+        return (
+            <>
+                {rowData._id !== 1 && <>
+                    <Button type="button" icon='pi pi-user-edit' onClick={() => updateUser(rowData._id)} className="p-button-sm p-button-text" />
+                    <Button type="button" icon='pi pi-trash' onClick={() => confirmDelete(rowData._id)} severity="danger" className="p-button-sm p-button-text" />
+                </>}
+            </>
+        )
     };
 
     const updateUser = (id) => {

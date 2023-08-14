@@ -8,7 +8,7 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { setShowAddUser, toast, setSessionActive } = useGlobalContext()
+    const { setShowAddUser, toast, setSessionActive, setUserId } = useGlobalContext()
 
     const userLogin = () => {
         if (email === "" || password === "") {
@@ -21,6 +21,7 @@ export default function Login() {
             axiosBaseURL.post("/login", user).then((res) => {
                 localStorage.setItem("session", JSON.stringify(res.data.session))
                 setSessionActive(true)
+                setUserId(res.data.session.sessionUserId)
                 navigate("/")
             }).catch((err) => {
                 toast.current.show({ severity: 'error', summary: 'Error', detail: err.response.data.message, life: 3000 });
