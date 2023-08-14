@@ -1,5 +1,5 @@
 import Axios from 'axios';
 const axiosBaseURL = Axios.create({
-    baseURL: 'https://sainty-exp-server-05.vercel.app/api'
+    baseURL: 'https://exp-server-q45r.onrender.com/api'
 });
 export default axiosBaseURL
