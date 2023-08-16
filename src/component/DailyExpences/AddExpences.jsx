@@ -20,9 +20,6 @@ export default function AddExpences() {
             items: expItems
         },]
     const addButton = useRef(null);
-    // Function to extract unique values of a specific key from an array of objects
-
-
 
     const groupedItemTemplate = (option) => {
         return (
@@ -93,6 +90,7 @@ export default function AddExpences() {
         setAmount('')
         setSelectedCatagory('')
         setDiscription('')
+        setAddCatagoryInput(" d-none")
     }
 
 
@@ -100,11 +98,11 @@ export default function AddExpences() {
         <div className="bg-slate-800 rounded p-3 mx-auto">
             <div className="mx-2 flex flex-wrap gap-3">
                 <div className="flex align-items-center">
-                    <RadioButton inputId="amountType1" name="catagory" value="Income" onChange={(e) => { setAmountType(e.value) }} checked={amountType === 'Income'} />
+                    <RadioButton inputId="amountType1" name="catagory" value="Income" onChange={(e) => { setAmountType(e.value); setAddCatagoryInput(" d-none") }} checked={amountType === 'Income'} />
                     <label htmlFor="amountType1" className="ml-2 text-success">Income</label>
                 </div>
                 <div className="flex align-items-center">
-                    <RadioButton inputId="amountType2" name="catagory" value="Expence" onChange={(e) => setAmountType(e.value)} checked={amountType === 'Expence'} />
+                    <RadioButton inputId="amountType2" name="catagory" value="Expence" onChange={(e) => { setAmountType(e.value); setAddCatagoryInput(" d-none") }} checked={amountType === 'Expence'} />
                     <label htmlFor="amountType2" className="ml-2 text-danger">Expence</label>
                 </div>
             </div>

@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react'
-import axiosBaseURL from '../utils/axiosBaseUrl'
 export default function Home() {
-  useEffect(() => {
-    // console.log(JSON.parse(localStorage.getItem("currentPage")))
-    // let user = JSON.parse(localStorage.getItem("currentPage")).userName
-    // setUser(user)
-  }, [])
 
   return (
     <div className="bg-gradient-to-r from-black to-gray-600">
