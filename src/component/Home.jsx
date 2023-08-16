@@ -18,7 +18,7 @@ export default function Home() {
               Hello {JSON.parse(localStorage.getItem("session")) !== null && JSON.parse(localStorage.getItem("session")).sessionUserName}
             </h1>
             <p className="font-mono mt-12 text-lg leading-8 text-white-600">
-              “Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.”
+              “When you know the impact of little expenses, you will realise that there is nothing little in this world.”
             </p>
           </div>
         </div>

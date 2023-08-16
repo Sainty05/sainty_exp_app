@@ -3,6 +3,7 @@ import axiosBaseURL from '../utils/axiosBaseUrl';
 import AddUser from './AddUser';
 import { useGlobalContext } from '../utils/context';
 import { useNavigate } from "react-router-dom";
+import logo from "../assests/logo-light.webp"
 
 export default function Login() {
     const navigate = useNavigate();
@@ -30,42 +31,34 @@ export default function Login() {
     }
 
     return (
-        <section className="gradient-form">
-            <AddUser />
-            <div className="container py-5 mt-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-xl-5">
-                        <div className="card rounded-3 text-black">
-                            <div className="card-body p-md-5 mx-md-4">
-                                <div className="mb-3 text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                                        style={{ width: '185px' }} alt="logo" />
-                                    <h4 className="mt-1 pb-1">We are The Lotus Team</h4>
-                                </div>
-                                <form>
-                                    <p className='text-primary'>Please login to your account</p>
-                                    <div className="form-outline mb-2">
-                                        <input type="email" id="form2Example11" onChange={(e) => setEmail(e.target.value)} className="form-control"
-                                            placeholder="email address" />
-                                        <label className="form-label" htmlFor="form2Example11">User Address</label>
-                                    </div>
-                                    <div className="form-outline mb-2">
-                                        <input type="password" id="form2Example22" onChange={(e) => setPassword(e.target.value)} className="form-control" placeholder="password" />
-                                        <label className="form-label" htmlFor="form2Example22">Password</label>
-                                    </div>
-                                    <div className="text-center pt-1 pb-1">
-                                        <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" onClick={() => userLogin()} type="button">Login</button>
-                                    </div>
-                                    <div className="d-flex align-items-center justify-content-center pb-4">
-                                        <p className="mb-0 me-2">Don't have an account?</p>
-                                        <button type="button" className="btn btn-outline-danger" onClick={() => setShowAddUser(true)}>Create new</button>
-                                    </div>
-                                </form>
+        <section>
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 dark:border-gray-700">
+                    <div className='flex flex-col justify-content-center align-items-center'>
+                        <img className="w-36 m-2" src={logo} alt="logo" />
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            Sign in to your account
+                        </h1>
+                    </div>
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <form className="space-y-4 md:space-y-6" action="#">
+                            <div>
+                                <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
                             </div>
-                        </div>
+                            <div>
+                                <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                        </form>
+                        <button onClick={() => userLogin()} className="w-full btn btn-primary">Sign in</button>
+                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Don’t have an account yet? <button onClick={() => setShowAddUser(true)} className="btn btn-link">Sign up</button>
+                        </p>
                     </div>
                 </div>
             </div>
+            <AddUser />
         </section>
     )
 }

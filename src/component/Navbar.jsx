@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useGlobalContext } from '../utils/context'
 import { useNavigate } from 'react-router-dom'
 import axiosBaseURL from '../utils/axiosBaseUrl';
+import logo from "../assests/logo.webp"
 //
 import {
     Bars3Icon,
@@ -48,11 +49,11 @@ export default function Navbar() {
         <>
             {sessionActive &&
                 <header className="bg-gradient-to-r from-stone-300 from-10% via-grey-500 via-30% to-stone-300 to-90%" >
-                    <nav className="mx-auto flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                    <nav className="mx-auto flex items-center justify-between p-3 lg:px-8" aria-label="Global">
                         <div className="flex lg:flex-1">
                             <Link to="/" className="-m-1.5 p-1.5">
                                 <span className="sr-only">Your Company</span>
-                                <img className="h-8 w-auto" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" alt="" />
+                                <img className="h-14 w-auto" src={logo} alt="logo" />
                             </Link>
                         </div>
                         <div className="flex lg:hidden">
@@ -66,20 +67,20 @@ export default function Navbar() {
                             </button>
                         </div>
                         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-                            <Link to="/" className="text-md font-semibold leading-6 text-gray-900">
+                            <Link to="/" className="text-md no-underline font-semibold leading-6 text-gray-900">
                                 Home
                             </Link>
-                            {userId === 1 && <Link to="/users" className="text-md font-semibold leading-6 text-gray-900">
+                            {userId === 1 && <Link to="/users" className="text-md no-underline font-semibold leading-6 text-gray-900">
                                 Manage Users
                             </Link>}
-                            <Link to="/dailyExpences" className="text-md font-semibold leading-6 text-gray-900">
+                            <Link to="/dailyExpences" className="text-md no-underline font-semibold leading-6 text-gray-900">
                                 Daily Expences
                             </Link>
                         </Popover.Group>
                         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-12">
                             <Link
                                 to="/myProfile"
-                                className="text-md font-semibold leading-6 text-gray-900"
+                                className="text-md no-underline font-semibold leading-6 text-gray-900"
                             >
                                 My Profile
                             </Link>

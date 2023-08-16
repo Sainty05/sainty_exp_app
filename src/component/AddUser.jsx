@@ -4,6 +4,7 @@ import { useGlobalContext } from '../utils/context';
 import axiosBaseURL from '../utils/axiosBaseUrl';
 import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
+import { Password } from 'primereact/password';
 
 export default function AddUser() {
     const { showAddUser, setShowAddUser, fetchUsers, toast, currentPage } = useGlobalContext()
@@ -12,6 +13,7 @@ export default function AddUser() {
     const [password, setPassword] = useState("")
     const [contact, setContact] = useState("")
     const [about, setAbout] = useState("")
+    const [passwordInputType, setPasswordInputType] = useState("password")
 
     const addUser = async () => {
         if (userName === "" || email === "" || password === "" || contact === "") {
@@ -58,10 +60,13 @@ export default function AddUser() {
                                 <InputText value={email} className="form-control" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" />
                                 {/* <input type="email" className="form-control" id="inputEmail4" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" /> */}
                             </div>
-                            <div className="form-group my-2">
+                            <div className="form-group relative my-2">
                                 <label htmlFor="inputPassword4" className='fw-bold'>Password<span className='text-danger'>*</span></label>
-                                {/* <Password value={password} className="form-control" onChange={(e) => setPassword(e.target.value)} toggleMask /> */}
-                                <input type="password" className="form-control" id="inputPassword4" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                                {/* <Password value={password} className="" feedback={false} onChange={(e) => setPassword(e.target.value)} toggleMask /> */}
+                                <div className='absolute right-4 cursor-pointer top-[50%]'>
+                                    <i className={`pi pi-eye${passwordInputType === "password" ? "" : "-slash"} text-gray-700`} onClick={() => setPasswordInputType(passwordInputType === "text" ? "password" : "text")}></i>
+                                </div>
+                                <input type={passwordInputType} className="form-control" id="inputPassword4" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                             </div>
                             <div className="form-group my-2">
                                 <label htmlFor="inputContact" className='fw-bold'>Contact<span className='text-danger'>*</span></label>

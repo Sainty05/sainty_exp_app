@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Dropdown } from 'primereact/dropdown';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
@@ -19,7 +19,7 @@ export default function AddExpences() {
             label: 'EXPENCE',
             items: expItems
         },]
-
+    const addButton = useRef(null);
     // Function to extract unique values of a specific key from an array of objects
 
 
@@ -33,8 +33,9 @@ export default function AddExpences() {
     };
 
     const saveExpences = () => {
-        if (selectedCatagory !== "" && amount !== "") {
+        if (selectedCatagory !== "" && amount !== "" && amount !== null) {
             let message = amountType === "Income" ? "Income" : "Expence"
+            addButton.current.setAttribute("disabled", true)
             if (updateExpence) {
                 const Expence = {
                     userId, userId,
@@ -50,9 +51,11 @@ export default function AddExpences() {
                     setDiscription('')
                     setAddCatagoryInput(" d-none")
                     setUpdateExpence(false)
+                    addButton.current.removeAttribute("disabled")
                     toast.current.show({ severity: 'success', summary: 'Updated', detail: `${message} updated successfully`, life: 3000 });
                 }).catch((err) => {
                     // console.log(err.response.status)
+                    addButton.current.removeAttribute("disabled")
                     if (err.response.status === 400) {
                         toast.current.show({ severity: 'warn', summary: 'Warning', detail: 'Please change data to update', life: 3000 });
                     } else {
@@ -72,9 +75,11 @@ export default function AddExpences() {
                     setAmount('')
                     setSelectedCatagory('')
                     setDiscription('')
+                    addButton.current.removeAttribute("disabled")
                     setAddCatagoryInput(" d-none")
                     toast.current.show({ severity: 'success', summary: 'Success', detail: `${message} added Successfully`, life: 3000 });
                 }).catch(() => {
+                    addButton.current.removeAttribute("disabled")
                     toast.current.show({ severity: 'error', summary: 'Error', detail: `${message} failed to save`, life: 3000 });
                 })
             }
@@ -137,10 +142,10 @@ export default function AddExpences() {
                 </div>
                 <div className="p-2 mt-4 w-1/4 max-sm:w-full">
                     <div className='flex align-items-center justify-content-center'>
-                        {!updateExpence ? <><button onClick={() => saveExpences("Income")} className="text-white bg-indigo-700 border-0 max-sm:px-10 py-2.5 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add</button>
+                        {!updateExpence ? <><button onClick={() => saveExpences("Income")} ref={addButton} className="text-white bg-indigo-700 border-0 max-sm:px-10 py-2.5 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg">Add</button>
                             <button onClick={() => handleCancel()} className="ml-3 text-white bg-gray-500 border-0 py-2.5 max-sm:px-6 px-10 focus:outline-none hover:bg-black rounded 
                             text-lg">Cancel</button></> :
-                            <><button onClick={() => saveExpences(amountType)} className="text-white bg-indigo-700 border-0 max-sm:px-6 py-2.5 px-10 focus:outline-none hover:bg-indigo-600 rounded text-lg">Update</button>
+                            <><button onClick={() => saveExpences(amountType)} ref={addButton} className="text-white bg-indigo-700 border-0 max-sm:px-6 py-2.5 px-10 focus:outline-none hover:bg-indigo-600 rounded text-lg">Update</button>
                                 <button onClick={() => handleCancel()} className="ml-3 text-white bg-gray-500 border-0 py-2.5 max-sm:px-6 px-10 focus:outline-none hover:bg-black rounded 
                             text-lg">Cancel</button>
                             </>}

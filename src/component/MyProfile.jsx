@@ -108,9 +108,9 @@ export default function MyProfile() {
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Username</dt>
                                 {!updateData ? <dd className="fw-bold mt-1 text-xl leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.userName}</dd> :
-                                    <div className='w-max'>
+                                    <dd className='w-max'>
                                         <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
-                                    </div>}
+                                    </dd>}
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Email</dt>
@@ -130,7 +130,7 @@ export default function MyProfile() {
                                 <dt className="text-sm font-medium leading-6 text-white">About</dt>
                                 {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.about}</dd> :
                                     <div className='w-max'>
-                                        <textarea value={userData.about} className="form-control" id="inputAbout" placeholder="Tell something about you..." onChange={(e) => setUserData({ ...userData, about: e.target.value })} />
+                                        <InputText value={userData.about} className="form-control" onChange={(e) => setUserData({ ...userData, about: e.target.value })} placeholder="about you..." />
                                     </div>}
                             </div>
                         </dl>
@@ -147,7 +147,7 @@ export default function MyProfile() {
                                 }}
                                     className='btn ml-5 btn-secondary'>Cancel</button>
                             </div>
-                            <div className='mt-10 p-2 pt-3 text-center border-t border-gray-100'>
+                            <div className='mt-10 p-2 pt-3 text-center border-t border-gray-600'>
                                 {!ChangePassword ? <>
                                     <div>
                                         <button className='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={() => setChangePassword(true)}>Update Password</button>

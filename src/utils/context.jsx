@@ -68,7 +68,7 @@ const AppProvider = ({ children }) => {
         }
         axiosBaseURL.post('/Expences', dt).then((res) => {
             // console.log(res)
-            let currData = res.data.cuurentExpences
+            let currData = res.data.currentExpences
             let prevData = res.data.previousExpences
             let index = 1
 
