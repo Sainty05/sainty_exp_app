@@ -89,7 +89,7 @@ export default function ExpencesTable() {
     <meta property="og:url" content="http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari" />
     <meta property="og:image" content="http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg" />`
 
-    const shareUrl2 = `whatsapp://send?text=${encodeURIComponent("hello from me")}&media=${encodeURIComponent("http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg")}`;
+    const shareUrl2 = `whatsapp://send?text=&media=${encodeURIComponent("http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg")}`;
 
     // const shareUrl = `whatsapp://send?text=${encodeURIComponent(
     //     'Check out this card!'
