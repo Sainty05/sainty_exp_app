@@ -99,7 +99,7 @@ export default function ExpencesTable() {
         <div>
             <ConfirmDialog />
             <Toast ref={toast} />
-            <a href={shareUrl}>Js whatsapp btn</a>
+            <a href={shareUrl2}>Js whatsapp btn</a>
             <WhatsappShareButton url={shareUrl}>
                 Share on WhatsApp
             </WhatsappShareButton>
