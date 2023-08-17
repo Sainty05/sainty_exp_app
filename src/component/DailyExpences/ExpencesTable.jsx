@@ -83,7 +83,14 @@ export default function ExpencesTable() {
         );
     }
 
-    const shareUrl = `<img src="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg" alt="" />`
+    const shareUrl = `<html>
+    <head>
+    <meta property="og:title" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
+    <meta property="og:description" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
+    <meta property="og:url" content="http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari" />
+    <meta property="og:image" content="http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg" />
+    </head>
+    </html>`
 
 
     // const shareUrl = `whatsapp://send?text=${encodeURIComponent(
