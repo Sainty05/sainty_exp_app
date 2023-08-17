@@ -6,7 +6,6 @@ import axiosBaseURL from '../../utils/axiosBaseUrl';
 import { Tag } from 'primereact/tag';
 import { DataScroller } from 'primereact/datascroller';
 import { useNavigate } from "react-router-dom";
-import { WhatsappShareButton } from 'react-share';
 
 
 export default function ExpencesTable() {
@@ -83,26 +82,10 @@ export default function ExpencesTable() {
         );
     }
 
-    const shareUrl = `
-    <meta property="og:title" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
-    <meta property="og:description" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
-    <meta property="og:url" content="http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari" />
-    <meta property="og:image" content="http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg" />`
-
-    const shareUrl2 = `whatsapp://send?text=&media=${encodeURIComponent("http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg")}`;
-
-    // const shareUrl = `whatsapp://send?text=${encodeURIComponent(
-    //     'Check out this card!'
-    // )}&amp;media=${encodeURIComponent(imageUrl)}`;
-
     return (
         <div>
             <ConfirmDialog />
             <Toast ref={toast} />
-            <a href={shareUrl2}>Js whatsapp btn</a>
-            <WhatsappShareButton url={shareUrl}>
-                Share on WhatsApp
-            </WhatsappShareButton>
             <div className='mt-3 px-0 container'>
                 <h4 className='text-white text-center'>Balance: {balance()}</h4>
                 <div className='p-4 flex justify-between'>
