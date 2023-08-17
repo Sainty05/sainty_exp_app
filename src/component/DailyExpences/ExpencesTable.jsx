@@ -98,7 +98,7 @@ export default function ExpencesTable() {
         <div>
             <ConfirmDialog />
             <Toast ref={toast} />
-            <WhatsappShareButton imageUrl={"http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg"} description={"How to change the address bar color in Chrome, Firefox, Opera, Safari"} url={"http://webdevelopmentscripts.com/4-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari"}>
+            <WhatsappShareButton imageUrl={"http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg"}>
                 Share on WhatsApp
             </WhatsappShareButton>
             <div className='mt-3 px-0 container'>
