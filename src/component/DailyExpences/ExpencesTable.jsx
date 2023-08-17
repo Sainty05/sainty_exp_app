@@ -88,6 +88,9 @@ export default function ExpencesTable() {
         <div>
             <ConfirmDialog />
             <Toast ref={toast} />
+            <a href="whatsapp://send?text=${encodeURIComponent(
+    'Check out this card!'
+  )}&amp;media=${encodeURIComponent(imageUrl)}`">Whatsapp</a>
             <div className='mt-3 px-0 container'>
                 <h4 className='text-white text-center'>Balance: {balance()}</h4>
                 <div className='p-4 flex justify-between'>
