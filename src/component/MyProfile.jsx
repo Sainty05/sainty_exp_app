@@ -4,6 +4,7 @@ import { InputText } from "primereact/inputtext";
 import { useGlobalContext } from '../utils/context';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 export default function MyProfile() {
     const { toast, setSessionActive } = useGlobalContext()
@@ -33,7 +34,6 @@ export default function MyProfile() {
             setUpdateData(false)
             toast.current.show({ severity: 'success', summary: 'Updated', detail: 'Profile updated succesfully', life: 3000 });
         }).catch((err) => {
-            // console.log(err)
             if (err.response.status === 400) {
                 return toast.current.show({ severity: 'warn', summary: 'Warning', detail: err.response.data.message, life: 3000 });
             }
@@ -45,7 +45,6 @@ export default function MyProfile() {
         if (password !== "" && confirmPassword !== "") {
             if (password === confirmPassword) {
                 axiosBaseURL.put(`/updatePassword/${id}`, { password: password }).then((res) => {
-                    // console.log(res)
                     setPassword("")
                     setConfirmPassword("")
                     setChangePassword(false)
@@ -98,7 +97,6 @@ export default function MyProfile() {
             setSessionActive(res.data.sessionActive)
             localStorage.removeItem("session")
             navigate("/login")
-            // setProfileMenu("hidden")
         }).catch((err) => {
             toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't logout", life: 3000 });
         })
@@ -201,6 +199,9 @@ export default function MyProfile() {
             }
             {!updateData && <div className='mt-3 flex flex-col'>
                 <button className='btn btn-dark mb-3' onClick={() => setUpdateData(true)}>Update Profile</button>
+                {userData._id === 1 && <Link to="/users" className="btn btn-primary mb-3">
+                    Manage Users
+                </Link>}
                 <button onClick={() => handleLogout()} className="btn btn-danger mb-3" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</button>
             </div>}
         </div >

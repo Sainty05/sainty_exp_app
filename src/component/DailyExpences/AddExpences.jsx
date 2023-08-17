@@ -6,7 +6,6 @@ import axiosBaseURL from '../../utils/axiosBaseUrl';
 import { useGlobalContext } from '../../utils/context';
 import { RadioButton } from 'primereact/radiobutton';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
-import { Dialog } from 'primereact/dialog';
 import { Toast } from 'primereact/toast';
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddExpences() {
     const navigate = useNavigate()
-    const { toast, fetchExpences, selectedCatagory, date, setSelectedCatagory, expItems, incItems, amount, userId, setAmount, discription, setDiscription, updateExpence, setUpdateExpence, id, amountType, setAmountType, addExpenceForm, setAddExpenceForm } = useGlobalContext()
+    const { toast, fetchExpences, selectedCatagory, date, setSelectedCatagory, expItems, incItems, amount, userId, setAmount, discription, setDiscription, updateExpence, setUpdateExpence, id, amountType, setAmountType } = useGlobalContext()
     const [addCatagoryInput, setAddCatagoryInput] = useState(" d-none")
     const catagories = amountType === 'Income' ? [
         {
@@ -55,11 +54,9 @@ export default function AddExpences() {
                     setAddCatagoryInput(" d-none")
                     setUpdateExpence(false)
                     navigate("/manageExpences")
-                    // setAddExpenceForm(false)
                     addButton.current.removeAttribute("disabled")
                     toast.current.show({ severity: 'success', summary: 'Updated', detail: `${message} updated successfully`, life: 3000 });
                 }).catch((err) => {
-                    // console.log(err.response.status)
                     addButton.current.removeAttribute("disabled")
                     if (err.response.status === 400) {
                         toast.current.show({ severity: 'warn', summary: 'Warning', detail: 'Please change data to update', life: 3000 });
@@ -82,7 +79,6 @@ export default function AddExpences() {
                     setDiscription('')
                     addButton.current.removeAttribute("disabled")
                     setAddCatagoryInput(" d-none")
-                    // setAddExpenceForm(false)
                     navigate("/manageExpences")
                     toast.current.show({ severity: 'success', summary: 'Success', detail: `${message} added Successfully`, life: 3000 });
                 }).catch(() => {
@@ -96,13 +92,11 @@ export default function AddExpences() {
     }
 
     const handleCancel = () => {
-        // setUpdateExpence(false)
         setAmount('')
         setSelectedCatagory('')
         setDiscription('')
         setAddCatagoryInput(" d-none")
         navigate("/manageExpences")
-        // setAddExpenceForm(false)
     }
 
     const confirmDelete = (id) => {
@@ -132,7 +126,6 @@ export default function AddExpences() {
 
 
     return (
-        // <Dialog header="Add Income/Expence" visible={addExpenceForm} style={{ width: '95vw' }} onHide={() => setAddExpenceForm(false)}>
         <div className="h-screen rounded p-3 mx-auto">
             <ConfirmDialog />
             <Toast ref={toast} />
@@ -194,6 +187,5 @@ export default function AddExpences() {
                 </div>
             </div>
         </div >
-        // </Dialog>
     )
 }

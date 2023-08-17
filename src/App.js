@@ -32,7 +32,6 @@ function App() {
         <Route path="/pieChart" element={<PieChart />} />
         <Route path="/monthlyData" element={<MonthlyData />} />
       </Routes>
-      {/* <Outlet /> */}
       <Navbar />
     </div>
   );

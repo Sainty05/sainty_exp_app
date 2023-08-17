@@ -4,7 +4,6 @@ import { useGlobalContext } from '../utils/context';
 import axiosBaseURL from '../utils/axiosBaseUrl';
 import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
-import { Password } from 'primereact/password';
 
 export default function AddUser() {
     const { showAddUser, setShowAddUser, fetchUsers, toast, currentPage } = useGlobalContext()
@@ -53,16 +52,13 @@ export default function AddUser() {
                             <div className="form-group my-2">
                                 <label htmlFor="inputuserName" className='fw-bold'>Username<span className='text-danger'>*</span></label>
                                 <InputText value={userName} className="form-control" onChange={(e) => setUserName(e.target.value)} placeholder="enter name" />
-                                {/* <input type="text" className="form-control" id="inputuserName" onChange={(e) => setUserName(e.target.value)} placeholder="enter name" /> */}
                             </div>
                             <div className="form-group my-2">
                                 <label htmlFor="inputEmail4" className='fw-bold'>Email<span className='text-danger'>*</span></label>
                                 <InputText value={email} className="form-control" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" />
-                                {/* <input type="email" className="form-control" id="inputEmail4" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" /> */}
                             </div>
                             <div className="form-group relative my-2">
                                 <label htmlFor="inputPassword4" className='fw-bold'>Password<span className='text-danger'>*</span></label>
-                                {/* <Password value={password} className="" feedback={false} onChange={(e) => setPassword(e.target.value)} toggleMask /> */}
                                 <div className='absolute right-4 cursor-pointer top-[50%]'>
                                     <i className={`pi pi-eye${passwordInputType === "password" ? "" : "-slash"} text-gray-700`} onClick={() => setPasswordInputType(passwordInputType === "text" ? "password" : "text")}></i>
                                 </div>

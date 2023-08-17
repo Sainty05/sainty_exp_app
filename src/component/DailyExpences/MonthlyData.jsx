@@ -9,7 +9,7 @@ import { Calendar } from 'primereact/calendar';
 export default function MonthlyData() {
 
     const navigate = useNavigate()
-    const { toast, Expences, fetchExpences, userId, setSelectedCatagory, setAmount, setDiscription, setUpdateExpence, setId, setAmountType, setShowChart, date, setDate, setAddExpenceForm } = useGlobalContext()
+    const { Expences, fetchExpences, setSelectedCatagory, setAmount, setDiscription, setUpdateExpence, setId, setAmountType, date, setDate } = useGlobalContext()
 
     useEffect(() => {
         fetchExpences(date)
@@ -35,7 +35,6 @@ export default function MonthlyData() {
         return (
             <div className="col-12">
                 <div className="flex flex-column xl:flex-row xl:align-items-start p-2 pl-4 mx-2 gap-4" onClick={() => updateExpence(expence._id)}>
-                    {/* <img className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" src={`https://primefaces.org/cdn/primereact/images/product/${expence.image}`} alt={expence.name} /> */}
                     <div className="flex justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                         <div className="flex max-sm:flex-col sm:justify-evenly max-sm:align-start gap-1">
                             <div className="text-xl font-bold text-900">{expence.catagory}</div>
@@ -59,14 +58,12 @@ export default function MonthlyData() {
 
     const updateExpence = (id) => {
         axiosBaseURL.post("/fetchExpence", { id: id }).then((res) => {
-            // console.log(res.data.Expence)
             setUpdateExpence(true)
             setSelectedCatagory(res.data.expence.catagory)
             setAmount(Number(res.data.expence.amount))
             setDiscription(res.data.expence.discription)
             setAmountType(res.data.expence.amountType)
             setId(res.data.expence._id)
-            // setAddExpenceForm(true)
             navigate("/addExpences")
         })
     }

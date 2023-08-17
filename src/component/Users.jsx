@@ -16,8 +16,6 @@ export default function Users() {
     useEffect(() => {
         fetchUsers()
     }, [])
-    // PrimeReact.changeTheme(currentTheme: string, newTheme: string, linkElementId: string, callback: Function)
-    //action
     const actionTemplate = (rowData, options) => {
         return (
             <>
@@ -31,7 +29,6 @@ export default function Users() {
 
     const updateUser = (id) => {
         axiosBaseURL.post("/fetchUser", { id: id }).then((res) => {
-            // console.log(res)
             setUserData(res.data)
         })
         setShowUpdateUser(true)
@@ -62,11 +59,12 @@ export default function Users() {
     }
 
     return (
-        <div>
+        <div className='h-screen pt-5'>
+            <h2 className='text-center pb-3'>Manage Users</h2>
             <ConfirmDialog />
             <Toast ref={toast} />
             <div className='container'>
-                <div className='d-flex mt-5 justify-content-between'>
+                <div className='d-flex mb-1 justify-content-between'>
                     <h3 className=''>User List</h3>
                     <div>
                         <button type="button" className="btn btn-dark" onClick={() => setShowAddUser(true)}>Add User</button>

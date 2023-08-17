@@ -16,7 +16,6 @@ export default function AddUser() {
             setShowUpdateUser(false)
             toast.current.show({ severity: 'success', summary: 'Updated', detail: 'User updated succesfully', life: 3000 });
         }).catch((err) => {
-            // console.log(err)
             if (err.response.status === 400) {
                 return toast.current.show({ severity: 'warn', summary: 'Warning', detail: err.response.data.message, life: 3000 });
             }
@@ -35,17 +34,11 @@ export default function AddUser() {
                             <div className="form-group my-2">
                                 <label htmlFor="inputuserName" className='fw-bold'>Username</label>
                                 <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
-                                {/* <input type="text" className="form-control" id="inputuserName" onChange={(e) => setUserName(e.target.value)} placeholder="enter name" /> */}
                             </div>
                             <div className="form-group my-2">
                                 <label htmlFor="inputEmail4" className='fw-bold'>Email</label>
                                 <InputText value={userData.email} className="form-control" onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="example@email.com" />
-                                {/* <input type="email" className="form-control" id="inputEmail4" onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" /> */}
                             </div>
-                            {/* <div className="form-group my-2">
-                                <label htmlFor="inputPassword4" className='fw-bold'>Password</label>
-                                <input value={userData.password} type="password" className="form-control" id="inputPassword4" onChange={(e) => setUserData({ ...userData, password: e.target.value })} placeholder="Password" />
-                            </div> */}
                             <div className="form-group my-2">
                                 <label htmlFor="inputContact" className='fw-bold'>Contact</label>
                                 <input type="number" value={userData.contact} className="form-control" id="inputContact" placeholder="9999999999" onChange={(e) => setUserData({ ...userData, contact: e.target.value })} />
