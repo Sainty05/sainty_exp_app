@@ -83,11 +83,11 @@ export default function ExpencesTable() {
         );
     }
 
-    const imageUrl = "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+    const shareUrl = "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
 
-    const shareUrl = `whatsapp://send?text=${encodeURIComponent(
-        'Check out this card!'
-    )}&amp;media=${encodeURIComponent(imageUrl)}`;
+    // const shareUrl = `whatsapp://send?text=${encodeURIComponent(
+    //     'Check out this card!'
+    // )}&amp;media=${encodeURIComponent(imageUrl)}`;
 
     return (
         <div>
