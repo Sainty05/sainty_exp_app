@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 export default function Home() {
 
   return (
-    <div className="bg-gradient-to-r from-black to-gray-600">
+    <div className="bg-gradient-to-r h-screen from-black to-gray-600">
       <div className="relative isolate px-6 lg:px-8">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
@@ -12,7 +12,7 @@ export default function Home() {
               Hello {JSON.parse(localStorage.getItem("session")) !== null && JSON.parse(localStorage.getItem("session")).sessionUserName}
             </h1>
             <p className="font-mono mt-12 text-lg leading-8 text-white-600">
-              “When you know the impact of little expenses, you will realise that there is nothing little in this world.”
+              “ When you know the impact of little expenses, you will realise that there is nothing little in this world. ”
             </p>
           </div>
         </div>

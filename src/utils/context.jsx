@@ -25,6 +25,7 @@ const AppProvider = ({ children }) => {
     const [date, setDate] = useState(new Date())
     const [expItems, setExpItems] = useState([])
     const [incItems, setIncItems] = useState([])
+    const [addExpenceForm, setAddExpenceForm] = useState(false)
 
     //fetch users
     const fetchUsers = () => {
@@ -140,7 +141,7 @@ const AppProvider = ({ children }) => {
     return (
         <AppContext.Provider
             value={{
-                showAddUser, setShowAddUser, fetchUsers, users, setUsers, toast, showUpdateUser, setShowUpdateUser, userData, setUserData, setShowAddMovie, fetchMovies, movies, setShowUpdateMovie, setMovieData, showAddMovie, showUpdateMovie, movieData, setMovies, sessionActive, setSessionActive, fetchExpences, Expences, setExpences, selectedCatagory, setSelectedCatagory, amount, setAmount, discription, setDiscription, updateExpence, setUpdateExpence, id, setId, amountType, setAmountType, showChart, setShowChart, date, setDate, incItems, setIncItems, expItems, setExpItems, userId, setUserId
+                showAddUser, setShowAddUser, fetchUsers, users, setUsers, toast, showUpdateUser, setShowUpdateUser, userData, setUserData, setShowAddMovie, fetchMovies, movies, setShowUpdateMovie, setMovieData, showAddMovie, showUpdateMovie, movieData, setMovies, sessionActive, setSessionActive, fetchExpences, Expences, setExpences, selectedCatagory, setSelectedCatagory, amount, setAmount, discription, setDiscription, updateExpence, setUpdateExpence, id, setId, amountType, setAmountType, showChart, setShowChart, date, setDate, incItems, setIncItems, expItems, setExpItems, userId, setUserId, addExpenceForm, setAddExpenceForm
             }}
         >
             {children}

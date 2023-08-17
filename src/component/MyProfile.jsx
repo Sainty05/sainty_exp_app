@@ -92,44 +92,53 @@ export default function MyProfile() {
         toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
     }
 
+    const handleLogout = () => {
+        let sessionId = JSON.parse(localStorage.getItem("session")).sessionId
+        axiosBaseURL.post('/logout', { sessionId: sessionId }).then((res) => {
+            setSessionActive(res.data.sessionActive)
+            localStorage.removeItem("session")
+            navigate("/login")
+            // setProfileMenu("hidden")
+        }).catch((err) => {
+            toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't logout", life: 3000 });
+        })
+    }
+
     return (
-        <div className='mt-12 container'>
+        <div className='container min-h-screen'>
             <ConfirmDialog />
-            <div className="px-4 sm:px-0">
-                <h3 className="text-center font-semibold leading-7 text-white">Profile Details</h3>
+            <div className="px-4 pt-4 sm:px-0">
+                <h3 className="text-center  font-semibold leading-7 text-white">My Profile</h3>
             </div>
             {userData !== {} &&
                 <div className='mt-10 mx-auto max-sm:w-full w-1/2'>
-                    {!updateData && <div className='text-right'>
-                        <button className='btn btn-dark mb-3' onClick={() => setUpdateData(true)}>Update Profile</button>
-                    </div>}
                     <div className="border-t border-b border-gray-100">
                         <dl className="divide-y divide-gray-100">
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Username</dt>
                                 {!updateData ? <dd className="fw-bold mt-1 text-xl leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.userName}</dd> :
-                                    <dd className='w-max'>
+                                    <dd className=''>
                                         <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
                                     </dd>}
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Email</dt>
                                 {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.email}</dd> :
-                                    <div className='w-max'>
+                                    <div className=''>
                                         <InputText value={userData.email} className="form-control" onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="example@email.com" />
                                     </div>}
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Contact</dt>
                                 {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.contact}</dd> :
-                                    <div className='w-max'>
+                                    <div className=''>
                                         <input type="number" value={userData.contact} className="form-control" id="inputContact" placeholder="9999999999" onChange={(e) => setUserData({ ...userData, contact: e.target.value })} />
                                     </div>}
                             </div>
                             <div className="px-4 pt-6 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">About</dt>
                                 {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.about}</dd> :
-                                    <div className='w-max'>
+                                    <div className=''>
                                         <InputText value={userData.about} className="form-control" onChange={(e) => setUserData({ ...userData, about: e.target.value })} placeholder="about you..." />
                                     </div>}
                             </div>
@@ -190,6 +199,10 @@ export default function MyProfile() {
                     }
                 </div>
             }
+            {!updateData && <div className='mt-3 flex flex-col'>
+                <button className='btn btn-dark mb-3' onClick={() => setUpdateData(true)}>Update Profile</button>
+                <button onClick={() => handleLogout()} className="btn btn-danger mb-3" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</button>
+            </div>}
         </div >
     )
 }
