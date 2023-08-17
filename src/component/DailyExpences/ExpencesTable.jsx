@@ -89,6 +89,7 @@ export default function ExpencesTable() {
     <meta property="og:url" content="http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari" />
     <meta property="og:image" content="http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg" />`
 
+    const shareUrl2 = `whatsapp://send?text=${encodeURIComponent("How to change the address bar color in Chrome, Firefox, Opera, Safari" + '\n' + "http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari")}&media=${encodeURIComponent("http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg")}`;
 
     // const shareUrl = `whatsapp://send?text=${encodeURIComponent(
     //     'Check out this card!'
@@ -98,7 +99,8 @@ export default function ExpencesTable() {
         <div>
             <ConfirmDialog />
             <Toast ref={toast} />
-            <WhatsappShareButton imageUrl={"http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg"}>
+            <a href={shareUrl}>Js whatsapp btn</a>
+            <WhatsappShareButton url={shareUrl}>
                 Share on WhatsApp
             </WhatsappShareButton>
             <div className='mt-3 px-0 container'>
