@@ -3,6 +3,7 @@ import axiosBaseURL from "./axiosBaseUrl";
 
 const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
+    const [sessionActive, setSessionActive] = useState(false)
     const toast = useRef(null);
     const [userId, setUserId] = useState("")
     const [showAddUser, setShowAddUser] = useState(false);
@@ -13,7 +14,6 @@ const AppProvider = ({ children }) => {
     const [showUpdateMovie, setShowUpdateMovie] = useState(false);
     const [movieData, setMovieData] = useState(null)
     const [movies, setMovies] = useState([])
-    const [sessionActive, setSessionActive] = useState(false)
     const [Expences, setExpences] = useState([])
     const [selectedCatagory, setSelectedCatagory] = useState("")
     const [amount, setAmount] = useState("")

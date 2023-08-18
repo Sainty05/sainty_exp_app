@@ -16,8 +16,6 @@ import MonthlyData from './component/DailyExpences/MonthlyData';
 import NoRoutesFound from './component/NoRoutesFound';
 import ManageExpences from './component/DailyExpences/ManageExpences';
 
-
-
 function App() {
   const { toast, userId } = useGlobalContext()
   return (

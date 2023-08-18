@@ -48,7 +48,7 @@ export default function MonthlyData() {
                             </span>
                         </div>
                         <div className="flex max-sm:flex-col align-items-end gap-3 sm:gap-2">
-                            <span className={"text-xl font-semibold " + (expence.amountType === "Income" ? "text-green-700" : "text-red-600")}>₹ {expence.amount}</span>
+                            <span className={"text-xl font-semibold " + (expence.amountType === "Income" ? "text-green-500" : "text-red-400")}>₹ {expence.amount}</span>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,11 @@ export default function MonthlyData() {
 
     return (
         <div className='min-h-screen px-2 pt-2 container'>
-            <Calendar className='w-full text-center' value={date} onChange={(e) => { setDate(e.value); fetchExpences(e.value) }} view="month" dateFormat="MM - yy" />
+            <form>
+                <label className='w-full text-xs'> Select Month
+                    <Calendar className='w-full text-center' value={date} onChange={(e) => { setDate(e.value); fetchExpences(e.value) }} view="month" dateFormat="MM - yy" />
+                </label>
+            </form>
             <div className='p-4 flex justify-between'>
                 <Tag className="mr-2" icon="pi pi-arrow-up" severity="danger"><span className="text-base">{"Expence: " + totalExpence()}</span></Tag>
                 <Tag className="mr-2" icon="pi pi-arrow-down" severity="success"><span className="text-base">{"Income: " + totalIncome()}</span></Tag>

@@ -146,8 +146,8 @@ export default function AddExpences() {
             <div className="flex flex-wrap flex-col align-items-center">
                 <div className="p-2 w-1/4 max-sm:w-full">
                     <div className="relative">
-                        <label htmlFor="name" className="leading-7 text-sm text-white">Catagory<span className='text-danger'> *</span></label>
-                        <InputText value={selectedCatagory} placeholder="Enter new catagory" onChange={(e) => setSelectedCatagory(e.target.value)} rows={1} cols={30} className={"w-full md:w-14rem" + addCatagoryInput} />
+                        <label htmlFor="catagory" className="leading-7 text-sm text-white">Catagory<span className='text-danger'> *</span></label>
+                        <InputText id='catagory' value={selectedCatagory} placeholder="Enter new catagory" onChange={(e) => setSelectedCatagory(e.target.value)} rows={1} cols={30} className={"w-full md:w-14rem" + addCatagoryInput} />
                         <Dropdown value={selectedCatagory}
                             onChange={(e) => {
                                 if (e.value === "+ Add New Catagoty") {
@@ -162,17 +162,18 @@ export default function AddExpences() {
                 </div>
                 <div className="p-2 w-1/4 max-sm:w-full">
                     <div className="relative">
-                        <label htmlFor="email" className="leading-7 text-sm text-white">Amount<span className='text-danger'> *</span></label>
+                        <label htmlFor="amount" className="leading-7 text-sm text-white">Amount<span className='text-danger'> *</span></label>
                         <div className="p-inputgroup">
                             <span className="p-inputgroup-addon">₹</span>
-                            <InputNumber placeholder="Amount" value={amount} onValueChange={(e) => setAmount(e.value)} locale="en-IN" />
+                            {/* <InputNumber id='amount' placeholder="Amount" value={amount} onValueChange={(e) => setAmount(e.value)} locale="en-IN" /> */}
+                            <input id='amount' value={amount} onChange={(e) => setAmount(e.target.value)} className="p-inputtext p-component p-inputnumber-input p-inputnumber-input" type="number" placeholder='Amount' />
                         </div>
                     </div>
                 </div>
                 <div className="p-2 w-1/4 max-sm:w-full">
                     <div className="relative">
-                        <label htmlFor="email" className="leading-7 text-sm text-white">Discription</label>
-                        <InputText value={discription} placeholder="discription" onChange={(e) => setDiscription(e.target.value)} rows={1} cols={30} className="w-full md:w-14rem" />
+                        <label htmlFor="discription" className="leading-7 text-sm text-white">Discription</label>
+                        <InputText id='discription' value={discription} placeholder="discription" onChange={(e) => setDiscription(e.target.value)} rows={1} cols={30} className="w-full md:w-14rem" />
                     </div>
                 </div>
                 <div className="p-2 mt-4 w-1/4 max-sm:w-full">

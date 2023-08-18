@@ -165,11 +165,10 @@ export default function MyProfile() {
                             <div className='mt-10 p-2 pt-3 text-center border-t border-gray-600'>
                                 {!ChangePassword ?
                                     <>
-                                        <div>
-                                            <button className='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={() => setChangePassword(true)}>Update Password</button>
-                                        </div>
+                                        <button className='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={() => setChangePassword(true)}>Update Password</button>
                                         {userData._id !== 1 &&
-                                            <button onClick={() => confirmDelete()} className='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900'>Delete Profile</button>}
+                                            <button onClick={() => confirmDelete()} className='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900'>Delete Profile</button>
+                                        }
                                     </>
                                     :
                                     <div className='pb-3'>
@@ -215,7 +214,7 @@ export default function MyProfile() {
                     {userData._id === 1 &&
                         <Link to="/users" className="btn btn-primary mb-3">Manage Users</Link>
                     }
-                    <button onClick={() => handleLogout()} className="btn btn-danger mb-3" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</button>
+                    <button onClick={() => handleLogout()} className="btn btn-danger mb-3" tabIndex="-1" id="user-menu-item-2">Sign out</button>
                 </div>
             }
         </div >

@@ -14,21 +14,25 @@ export default function Navbar() {
 
     const sessionChecker = () => {
         let session = JSON.parse(localStorage.getItem("session"))
-        axiosBaseURL.post('/session', session).then((res) => {
-            setSessionActive(res.data.sessionActive)
-            setUserId(session.sessionUserId)
-            setAvatarName(session.sessionUserName)
-        }).catch((err) => {
+        if (session === null) {
             navigate("/login")
-            setSessionActive(err.response.data.sessionActive)
-        })
+            setSessionActive(false)
+        } else {
+            axiosBaseURL.post('/session', session).then((res) => {
+                setSessionActive(res.data.sessionActive)
+                setUserId(session.sessionUserId)
+                setAvatarName(session.sessionUserName)
+            }).catch((err) => {
+                navigate("/login")
+                setSessionActive(err.response.data.sessionActive)
+            })
+        }
     }
 
     useEffect(() => {
         sessionChecker()
     }, [])
     
-    //-----------------------------------------
     return (
         <header className="bg-gradient-to-r sticky bottom-0 from-stone-300 from-10% via-grey-500 via-30% to-stone-300 to-90%" >
             {sessionActive &&
@@ -37,9 +41,9 @@ export default function Navbar() {
                         <span className="sr-only">Your Company</span>
                         <img className="h-10 w-auto" src={logo} alt="logo" />
                     </Link>
-                    <Link to="/pieChart"><i className='pi pi-chart-bar text-gray-900'></i></Link>
-                    <Link to="/addExpences" className='text-white border border-black no-underline hover:bg-gray-700 hover:text-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center'><i className='pi pi pi-plus text-gray-900 fw-bold'></i></Link>
-                    <Link to="/monthlyData"><i className='pi pi pi-list text-gray-900'></i></Link>
+                    <Link to="/pieChart" aria-label="analysis"><i className='pi pi-chart-bar text-gray-900'></i></Link>
+                    <Link to="/addExpences" aria-label="Add Expences" className='text-white border border-black no-underline hover:bg-gray-700 hover:text-black focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center'><i className='pi pi pi-plus text-gray-900 fw-bold'></i></Link>
+                    <Link to="/monthlyData" aria-label="Monthly Data"><i className='pi pi pi-list text-gray-900'></i></Link>
                     <div className="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <div className="relative ml-3">
                             <div>

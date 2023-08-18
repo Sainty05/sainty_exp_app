@@ -74,7 +74,7 @@ export default function ManageExpences() {
                             </span>
                         </div>
                         <div className="flex max-sm:flex-col align-items-end gap-3 sm:gap-2">
-                            <span className={"text-xl font-semibold " + (expence.amountType === "Income" ? "text-green-700" : "text-red-600")}>₹ {expence.amount}</span>
+                            <span className={"text-xl font-semibold " + (expence.amountType === "Income" ? "text-green-400" : "text-red-400")}>₹ {expence.amount}</span>
                         </div>
                     </div>
                 </div>
