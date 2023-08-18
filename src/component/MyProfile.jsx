@@ -18,15 +18,15 @@ export default function MyProfile() {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        profileData()
-    }, [])
-
     const profileData = () => {
         axiosBaseURL.post("/fetchUser", { id: id }).then((res) => {
             setUserData(res.data)
         })
     }
+
+    useEffect(() => {
+        profileData()
+    }, [])
 
     const updateProfile = () => {
         axiosBaseURL.put(`/updateUser/${userData._id}`, userData).then(() => {
@@ -78,7 +78,7 @@ export default function MyProfile() {
                 setSessionActive(res.data.sessionActive)
                 localStorage.removeItem("session")
                 navigate("/login")
-            }).catch((err) => {
+            }).catch(() => {
                 toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't loguot", life: 3000 });
             })
             toast.current.show({ severity: 'success', summary: 'Success', detail: 'User deleted succesfully', life: 3000 });
@@ -97,7 +97,7 @@ export default function MyProfile() {
             setSessionActive(res.data.sessionActive)
             localStorage.removeItem("session")
             navigate("/login")
-        }).catch((err) => {
+        }).catch(() => {
             toast.current.show({ severity: 'error', summary: 'Error', detail: "User didn't logout", life: 3000 });
         })
     }
@@ -114,31 +114,39 @@ export default function MyProfile() {
                         <dl className="divide-y divide-gray-100">
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Username</dt>
-                                {!updateData ? <dd className="fw-bold mt-1 text-xl leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.userName}</dd> :
+                                {!updateData ?
+                                    <dd className="fw-bold mt-1 text-xl leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.userName}</dd> :
                                     <dd className=''>
                                         <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
-                                    </dd>}
+                                    </dd>
+                                }
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Email</dt>
-                                {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.email}</dd> :
+                                {!updateData ?
+                                    <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.email}</dd> :
                                     <div className=''>
                                         <InputText value={userData.email} className="form-control" onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="example@email.com" />
-                                    </div>}
+                                    </div>
+                                }
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">Contact</dt>
-                                {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.contact}</dd> :
+                                {!updateData ?
+                                    <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.contact}</dd> :
                                     <div className=''>
                                         <input type="number" value={userData.contact} className="form-control" id="inputContact" placeholder="9999999999" onChange={(e) => setUserData({ ...userData, contact: e.target.value })} />
-                                    </div>}
+                                    </div>
+                                }
                             </div>
                             <div className="px-4 pt-6 pb-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt className="text-sm font-medium leading-6 text-white">About</dt>
-                                {!updateData ? <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.about}</dd> :
+                                {!updateData ?
+                                    <dd className="mt-1 text-md leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{userData.about}</dd> :
                                     <div className=''>
                                         <InputText value={userData.about} className="form-control" onChange={(e) => setUserData({ ...userData, about: e.target.value })} placeholder="about you..." />
-                                    </div>}
+                                    </div>
+                                }
                             </div>
                         </dl>
                     </div>
@@ -155,12 +163,14 @@ export default function MyProfile() {
                                     className='btn ml-5 btn-secondary'>Cancel</button>
                             </div>
                             <div className='mt-10 p-2 pt-3 text-center border-t border-gray-600'>
-                                {!ChangePassword ? <>
-                                    <div>
-                                        <button className='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={() => setChangePassword(true)}>Update Password</button>
-                                    </div>
-                                    {userData._id !== 1 && <button onClick={() => confirmDelete()} className='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900'>Delete Profile</button>}
-                                </>
+                                {!ChangePassword ?
+                                    <>
+                                        <div>
+                                            <button className='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={() => setChangePassword(true)}>Update Password</button>
+                                        </div>
+                                        {userData._id !== 1 &&
+                                            <button onClick={() => confirmDelete()} className='text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900'>Delete Profile</button>}
+                                    </>
                                     :
                                     <div className='pb-3'>
                                         <div className='sm:flex max-sm:m-2 mt-3 gap-2'>
@@ -188,7 +198,9 @@ export default function MyProfile() {
                                             </div>
                                         </div>
                                         <div>
-                                            {confirmPassword !== "" && <div className={"text-sm text-danger" + validatePassword}>* New and Confirm password should be same</div>}
+                                            {confirmPassword !== "" &&
+                                                <div className={"text-sm text-danger" + validatePassword}>* New and Confirm password should be same</div>
+                                            }
                                         </div>
                                     </div>
                                 }
@@ -197,13 +209,15 @@ export default function MyProfile() {
                     }
                 </div>
             }
-            {!updateData && <div className='mt-3 flex flex-col'>
-                <button className='btn btn-dark mb-3' onClick={() => setUpdateData(true)}>Update Profile</button>
-                {userData._id === 1 && <Link to="/users" className="btn btn-primary mb-3">
-                    Manage Users
-                </Link>}
-                <button onClick={() => handleLogout()} className="btn btn-danger mb-3" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</button>
-            </div>}
+            {!updateData &&
+                <div className='mt-3 flex flex-col'>
+                    <button className='btn btn-dark mb-3' onClick={() => setUpdateData(true)}>Update Profile</button>
+                    {userData._id === 1 &&
+                        <Link to="/users" className="btn btn-primary mb-3">Manage Users</Link>
+                    }
+                    <button onClick={() => handleLogout()} className="btn btn-danger mb-3" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</button>
+                </div>
+            }
         </div >
     )
 }

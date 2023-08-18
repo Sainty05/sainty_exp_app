@@ -4,12 +4,12 @@ import { useGlobalContext } from "../../utils/context";
 
 export default function PieChart() {
     const { fetchExpences, expItems, incItems, Expences, setDate } = useGlobalContext()
-
+    
     useEffect(() => {
         setDate(new Date())
         fetchExpences(new Date())
     }, [])
-
+    
     const expData = [["Catagory", "Amount"]]
     expItems.forEach((ele) => {
         let total = 0

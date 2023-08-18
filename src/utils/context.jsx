@@ -61,14 +61,12 @@ const AppProvider = ({ children }) => {
     //fetch Expences
     const fetchExpences = (date) => {
         const userId = JSON.parse(localStorage.getItem("session")).sessionUserId
-        // console.log(userId)
         const dt = {
             month: date.getMonth() + 1,
             year: date.getFullYear(),
             userId: userId
         }
         axiosBaseURL.post('/Expences', dt).then((res) => {
-            // console.log(res)
             let currData = res.data.currentExpences
             let prevData = res.data.previousExpences
             let index = 1

@@ -38,6 +38,8 @@ export default function AddExpences() {
         if (selectedCatagory !== "" && amount !== "" && amount !== null) {
             let message = amountType === "Income" ? "Income" : "Expence"
             addButton.current.setAttribute("disabled", true)
+
+            // Update Expence
             if (updateExpence) {
                 const Expence = {
                     userId, userId,
@@ -65,6 +67,7 @@ export default function AddExpences() {
                     }
                 })
             } else {
+                // Add Expence
                 const Expence = {
                     userId: userId,
                     catagory: selectedCatagory,

@@ -7,10 +7,10 @@ import { Tag } from 'primereact/tag';
 import { DataScroller } from 'primereact/datascroller';
 import { useNavigate } from "react-router-dom";
 
+export default function ManageExpences() {
 
-export default function ExpencesTable() {
     const navigate = useNavigate()
-    const { toast, Expences, fetchExpences, setSelectedCatagory, setAmount, setDiscription, setUpdateExpence, setId, setAmountType, setShowChart, date, setDate } = useGlobalContext()
+    const { toast, Expences, fetchExpences, setSelectedCatagory, setAmount, setDiscription, setUpdateExpence, setId, setAmountType, setDate } = useGlobalContext()
 
     useEffect(() => {
         setDate(new Date())
@@ -83,20 +83,21 @@ export default function ExpencesTable() {
     }
 
     return (
-        <div>
+        <section className="text-gray-600 min-h-screen body-font relative">
             <ConfirmDialog />
             <Toast ref={toast} />
-            <div className='mt-3 px-0 container'>
-                <h4 className='text-white text-center'>Balance: {balance()}</h4>
-                <div className='p-4 flex justify-between'>
-                    <Tag className="mr-2" icon="pi pi-arrow-up" severity="danger"><span className="text-base">{"Expence: " + totalExpence()}</span></Tag>
-                    <Tag className="mr-2" icon="pi pi-arrow-down" severity="success"><span className="text-base">{"Income: " + totalIncome()}</span></Tag>
-                </div>
-                <div className=''>
-                    <DataScroller value={Expences} itemTemplate={expenceTemplate} rows={5} inline scrollHeight="450px" />
+            <div className="container max-sm:px-0 sm:px-5 pt-3 mx-auto">
+                <div className='mt-3 px-0 container'>
+                    <h4 className='text-white text-center'>Balance: {balance()}</h4>
+                    <div className='p-4 flex justify-between'>
+                        <Tag className="mr-2" icon="pi pi-arrow-up" severity="danger"><span className="text-base">{"Expence: " + totalExpence()}</span></Tag>
+                        <Tag className="mr-2" icon="pi pi-arrow-down" severity="success"><span className="text-base">{"Income: " + totalIncome()}</span></Tag>
+                    </div>
+                    <div className=''>
+                        <DataScroller value={Expences} itemTemplate={expenceTemplate} rows={5} inline scrollHeight="450px" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
-

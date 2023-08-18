@@ -26,29 +26,31 @@ export default function AddUser() {
     return (
         <div>
             <Toast ref={toast} />
-            <Dialog visible={showUpdateUser} style={{ width: '30vw' }} onHide={() => setShowUpdateUser(false)}>
+            <Dialog visible={showUpdateUser} style={{ width: '95vw' }} onHide={() => setShowUpdateUser(false)}>
                 <h2 className='text-center'>Update User Form</h2>
                 <div className='p-4'>
-                    {userData != null && <form className='px-2'>
-                        <div className="form-row">
-                            <div className="form-group my-2">
-                                <label htmlFor="inputuserName" className='fw-bold'>Username</label>
-                                <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
+                    {userData != null &&
+                        <form className='px-2'>
+                            <div className="form-row">
+                                <div className="form-group my-2">
+                                    <label htmlFor="inputuserName" className='fw-bold'>Username</label>
+                                    <InputText value={userData.userName} className="form-control" onChange={(e) => setUserData({ ...userData, userName: e.target.value })} placeholder="enter name" />
+                                </div>
+                                <div className="form-group my-2">
+                                    <label htmlFor="inputEmail4" className='fw-bold'>Email</label>
+                                    <InputText value={userData.email} className="form-control" onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="example@email.com" />
+                                </div>
+                                <div className="form-group my-2">
+                                    <label htmlFor="inputContact" className='fw-bold'>Contact</label>
+                                    <input type="number" value={userData.contact} className="form-control" id="inputContact" placeholder="9999999999" onChange={(e) => setUserData({ ...userData, contact: e.target.value })} />
+                                </div>
+                                <div className="form-group my-2">
+                                    <label htmlFor="inputAbout" className='fw-bold'>About</label>
+                                    <textarea value={userData.about} className="form-control" id="inputAbout" placeholder="Tell something about you..." onChange={(e) => setUserData({ ...userData, about: e.target.value })} />
+                                </div>
                             </div>
-                            <div className="form-group my-2">
-                                <label htmlFor="inputEmail4" className='fw-bold'>Email</label>
-                                <InputText value={userData.email} className="form-control" onChange={(e) => setUserData({ ...userData, email: e.target.value })} placeholder="example@email.com" />
-                            </div>
-                            <div className="form-group my-2">
-                                <label htmlFor="inputContact" className='fw-bold'>Contact</label>
-                                <input type="number" value={userData.contact} className="form-control" id="inputContact" placeholder="9999999999" onChange={(e) => setUserData({ ...userData, contact: e.target.value })} />
-                            </div>
-                            <div className="form-group my-2">
-                                <label htmlFor="inputAbout" className='fw-bold'>About</label>
-                                <textarea value={userData.about} className="form-control" id="inputAbout" placeholder="Tell something about you..." onChange={(e) => setUserData({ ...userData, about: e.target.value })} />
-                            </div>
-                        </div>
-                    </form>}
+                        </form>
+                    }
                     <div className='mt-4 px-2'>
                         <button type="submit" className="btn btn-primary w-100" onClick={() => updateUser()}>Submit</button>
                     </div>

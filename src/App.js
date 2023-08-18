@@ -10,27 +10,29 @@ import Login from './component/Login';
 import { useGlobalContext } from './utils/context';
 import { Toast } from 'primereact/toast';
 import MyProfile from './component/MyProfile';
-import DailyExpences from './component/DailyExpences/DailyExpences';
 import AddExpences from './component/DailyExpences/AddExpences';
 import PieChart from './component/DailyExpences/PieChart';
 import MonthlyData from './component/DailyExpences/MonthlyData';
+import NoRoutesFound from './component/NoRoutesFound';
+import ManageExpences from './component/DailyExpences/ManageExpences';
 
 
 
 function App() {
-  const { toast } = useGlobalContext()
+  const { toast, userId } = useGlobalContext()
   return (
     <div className='bg-gradient-to-r from-black to-gray-600 text-white pb-1 min-vh-100'>
       <Toast ref={toast} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/users" element={<Users />} />
         <Route path="/myProfile" element={<MyProfile />} />
-        <Route path="/manageExpences" element={<DailyExpences />} />
+        <Route path="/manageExpences" element={<ManageExpences />} />
         <Route path="/addExpences" element={<AddExpences />} />
         <Route path="/pieChart" element={<PieChart />} />
         <Route path="/monthlyData" element={<MonthlyData />} />
+        {userId === 1 && <Route path="/users" element={<Users />} />}
+        <Route path='*' element={<NoRoutesFound />} />
       </Routes>
       <Navbar />
     </div>

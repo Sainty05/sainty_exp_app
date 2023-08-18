@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useGlobalContext } from '../utils/context';
@@ -9,13 +9,14 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import axiosBaseURL from '../utils/axiosBaseUrl';
 
-
 export default function Users() {
     const { setShowAddUser, fetchUsers, users, toast, setShowUpdateUser, setUserData } = useGlobalContext()
+    const [expandedRows, setExpandedRows] = useState(null);
 
     useEffect(() => {
         fetchUsers()
     }, [])
+
     const actionTemplate = (rowData, options) => {
         return (
             <>
@@ -58,8 +59,31 @@ export default function Users() {
         toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
     }
 
+    const rowExpansionTemplate = (data) => {
+        return (
+            <div className="p-1">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Email</th>
+                            <td className='pl-5'>{data.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact</th>
+                            <td className='pl-5'>{data.contact}</td>
+                        </tr>
+                        <tr>
+                            <th>About</th>
+                            <td className='pl-5'>{data.about}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        );
+    };
+
     return (
-        <div className='h-screen pt-5'>
+        <div className='min-h-screen pt-5'>
             <h2 className='text-center pb-3'>Manage Users</h2>
             <ConfirmDialog />
             <Toast ref={toast} />
@@ -70,12 +94,10 @@ export default function Users() {
                         <button type="button" className="btn btn-dark" onClick={() => setShowAddUser(true)}>Add User</button>
                     </div>
                 </div>
-                <DataTable value={users} tableStyle={{ minWidth: '50rem' }} stripedRows>
+                <DataTable expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} dataKey="index" rowExpansionTemplate={rowExpansionTemplate} value={users} size="small" tableStyle={{ minWidth: '98vw' }} stripedRows >
+                    <Column expander style={{ width: '5rem' }} />
                     <Column field="index" header="Index"></Column>
-                    <Column field="userName" header="Username"></Column>
-                    <Column field="email" header="Email"></Column>
-                    <Column field="contact" header="Contact"></Column>
-                    <Column field="about" header="About"></Column>
+                    <Column field='userName' header="Username"></Column>
                     <Column header="Action" style={{ flex: '0 0 4rem' }} body={actionTemplate}></Column>
                 </DataTable>
             </div>

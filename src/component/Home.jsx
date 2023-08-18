@@ -5,8 +5,6 @@ export default function Home() {
     <div className="bg-gradient-to-r h-screen from-black to-gray-600">
       <div className="relative isolate px-6 lg:px-8">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-          </div>
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white-900 sm:text-6xl">
               Hello {JSON.parse(localStorage.getItem("session")) !== null && JSON.parse(localStorage.getItem("session")).sessionUserName}
